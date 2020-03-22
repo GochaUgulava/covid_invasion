@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f2b01a4-7911-4f31-815d-367c96c7dd5a" name="Default Changelist" comment="" />
+    <list default="true" id="7f2b01a4-7911-4f31-815d-367c96c7dd5a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/cell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/covid_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/covid_invasion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,56 +48,78 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1903303169">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="849" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="849" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../covid_invasion/covid_invasion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <marker date="1584887109604" expanded="true" signature="140:685" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../covid_invasion/cell.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <marker date="1584885890405" expanded="true" signature="111:116" ph="..." />
-                <marker date="1584885890405" expanded="true" signature="677:682" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../covid_invasion/game_functions.py">
+        <entry file="file://$PROJECT_DIR$/covid_invasion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="207">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1584898013264" expanded="true" signature="140:817" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cell.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="31" column="74" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1584902043184" expanded="true" signature="114:115" ph="..." />
+                <marker date="1584902043184" expanded="true" signature="156:165" ph="..." />
+                <marker date="1584902043184" expanded="true" signature="589:594" ph="..." />
+                <marker date="1584902043184" expanded="true" signature="712:717" ph="..." />
+                <marker date="1584902043184" expanded="true" signature="805:916" ph="..." />
+                <marker date="1584902043184" expanded="true" signature="967:976" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1610">
+              <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1584887721913" expanded="true" signature="119:128" ph="..." />
-                <marker date="1584887721913" expanded="true" signature="1083:1256" ph="..." />
-                <marker date="1584887721913" expanded="true" signature="1584:1874" ph="..." />
-                <marker date="1584887721913" expanded="true" signature="1905:2044" ph="..." />
+                <marker date="1584898545590" expanded="true" signature="126:135" ph="..." />
+                <marker date="1584898545590" expanded="true" signature="1090:1263" ph="..." />
+                <marker date="1584898545590" expanded="true" signature="2107:2511" ph="..." />
+                <marker date="1584898545590" expanded="true" signature="2714:2883" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../covid_invasion/pill.py">
+        <entry file="file://$PROJECT_DIR$/pill.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
+            <state relative-caret-position="552">
               <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -102,12 +130,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../covid_invasion/settings.py">
+        <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+            <state relative-caret-position="207">
+              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
               <folding>
-                <marker date="1584886287305" expanded="true" signature="15:20" ph="..." />
+                <marker date="1584897673350" expanded="true" signature="15:20" ph="..." />
               </folding>
             </state>
           </provider>
@@ -122,15 +150,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/virus_invasion.py" />
         <option value="$PROJECT_DIR$/pill.py" />
-        <option value="$PROJECT_DIR$/cell.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/covid_invasion.py" />
         <option value="$PROJECT_DIR$/game_functions.py" />
+        <option value="$PROJECT_DIR$/cell.py" />
       </list>
     </option>
   </component>
@@ -140,6 +171,7 @@
     <option name="width" value="1260" />
     <option name="height" value="720" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -243,16 +275,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49919224" visible="true" weight="0.14967638" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49919224" visible="true" weight="0.15210356" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32956383" />
-      <window_info anchor="bottom" id="Version Control" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.3279483" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.32956383" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.32956383" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -267,42 +300,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../covid_invasion/covid_invasion.py">
+    <entry file="file://$PROJECT_DIR$/pill.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1584887109604" expanded="true" signature="140:685" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../covid_invasion/cell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1584885890405" expanded="true" signature="111:116" ph="..." />
-            <marker date="1584885890405" expanded="true" signature="677:682" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../covid_invasion/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding>
-            <marker date="1584886287305" expanded="true" signature="15:20" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../covid_invasion/pill.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
+        <state relative-caret-position="552">
           <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -311,16 +311,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../covid_invasion/game_functions.py">
+    <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="207">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding>
+            <marker date="1584897673350" expanded="true" signature="15:20" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="31" column="74" selection-start-line="31" selection-start-column="74" selection-end-line="31" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1584902043184" expanded="true" signature="114:115" ph="..." />
+            <marker date="1584902043184" expanded="true" signature="156:165" ph="..." />
+            <marker date="1584902043184" expanded="true" signature="589:594" ph="..." />
+            <marker date="1584902043184" expanded="true" signature="712:717" ph="..." />
+            <marker date="1584902043184" expanded="true" signature="805:916" ph="..." />
+            <marker date="1584902043184" expanded="true" signature="967:976" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1610">
+          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1584887721913" expanded="true" signature="119:128" ph="..." />
-            <marker date="1584887721913" expanded="true" signature="1083:1256" ph="..." />
-            <marker date="1584887721913" expanded="true" signature="1584:1874" ph="..." />
-            <marker date="1584887721913" expanded="true" signature="1905:2044" ph="..." />
+            <marker date="1584898545590" expanded="true" signature="126:135" ph="..." />
+            <marker date="1584898545590" expanded="true" signature="1090:1263" ph="..." />
+            <marker date="1584898545590" expanded="true" signature="2107:2511" ph="..." />
+            <marker date="1584898545590" expanded="true" signature="2714:2883" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/covid_invasion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1584898013264" expanded="true" signature="140:817" ph="..." />
           </folding>
         </state>
       </provider>

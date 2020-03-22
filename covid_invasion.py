@@ -16,15 +16,16 @@ def main():
     clock = pygame.time.Clock()
     pill = Pill(game_set, screen)
     cells = Group()
+    covids = Group()
     while True:
         clock.tick(game_set.fps)
         gf.check_event(pill)
-        pill.update()
-
-        gf.cell_create(game_set, screen, cells)
+        gf.cell_create(game_set, screen, covids, cells)
+        gf.covid_create(game_set, screen, covids, cells)
         gf.cell_update(screen, cells)
-
-        gf.render(game_set, screen, pill, cells)
+        gf.covid_update(screen, covids)
+        pill.update()
+        gf.render(game_set, screen, pill, covids, cells)
 
 
 main()
