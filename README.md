@@ -1,4 +1,5 @@
-#covid_invasion
+covid_invasion
+
 arcade game on python (using pygame module)
 
 not finished
