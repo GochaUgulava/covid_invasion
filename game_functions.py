@@ -6,20 +6,20 @@ from time import sleep
 from cell import Cell, Covid
 
 
-def check_event(pill, menu, score,  cells, covids):
+def check_event(pill, menu, score,  cells, covids, sound):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_key_down(event, pill, score, cells, covids)
+            check_key_down(event, pill, score, cells, covids, sound)
         elif event.type == pygame.KEYUP:
             check_key_up(event, pill)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_button(menu, score, cells, covids, mouse_x, mouse_y)
+            check_button(menu, score, cells, covids, mouse_x, mouse_y, sound)
 
 
-def check_key_down(event, pill, score, cells, covids):
+def check_key_down(event, pill, score, cells, covids, sound):
     if event.key == pygame.K_RIGHT:
         pill.moving_right_flag = True
     elif event.key == pygame.K_LEFT:
@@ -31,7 +31,7 @@ def check_key_down(event, pill, score, cells, covids):
     elif event.key == pygame.K_ESCAPE:
         sys.exit()
     elif not score.game_active and event.key == pygame.K_RETURN:
-        new_game(score, cells, covids)
+        new_game(score, cells, covids, sound)
 
 
 def check_key_up(event, pill):
@@ -45,9 +45,9 @@ def check_key_up(event, pill):
         pill.moving_down_flag = False
 
 
-def check_button(menu, score, cells, covids, mouse_x, mouse_y):
+def check_button(menu, score, cells, covids, mouse_x, mouse_y, sound):
     if menu.button_play.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
-        new_game(score, cells, covids)
+        new_game(score, cells, covids, sound)
     elif menu.button_instructions.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         show_instructions()
     elif menu.button_quit.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
@@ -66,7 +66,7 @@ def set_icon():
     pygame.display.set_icon(icon_image)
 
 
-def new_game(score, cells, covids):
+def new_game(score, cells, covids, sound):
     score.game_active = True
     pygame.mouse.set_visible(False)
     score.reset_stat()
@@ -78,6 +78,9 @@ def new_game(score, cells, covids):
     score.prep_lifes()
     cells.empty()
     covids.empty()
+    sound.play(sound.ready)
+    sleep(1)
+    sound.play(sound.go)
 
 
 def show_instructions():
@@ -116,43 +119,47 @@ def covid_create(game_set, screen, covids, cells):
         covids.add(covid)
 
 
-def cell_update(screen, cells,  covids, pill, score):
+def cell_update(screen, cells,  covids, pill, score, sound):
     cells.update()
     for cell in cells.sprites():
         if cell.rect.top > screen.get_rect().bottom:
             cells.remove(cell)
-    check_pill_cell_collision(cells, covids, pill, score)
+    check_pill_cell_collision(cells, covids, pill, score, sound)
 
 
-def check_pill_cell_collision(cells, covids, pill, score):
+def check_pill_cell_collision(cells, covids, pill, score, sound):
     if pygame.sprite.spritecollide(pill, cells, True):
+        sound.play(sound.wrong)
         if score.killed_cell_limit > 1:
             score.killed_cell_limit -= 1
             score.prep_killed_cell()
-            sleep(2)
         else:
-            pill_collided(score, covids, cells)
+            pill_collided(score, covids, cells, sound)
 
 
-def covid_update(game_set, screen, covids, cells, pill, score):
+
+def covid_update(game_set, screen, covids, cells, pill, score, sound):
     covids.update()
     for covid in covids.sprites():
         if covid.rect.top > screen.get_rect().bottom:
             covid.remove(covids)
-            pill_collided(score, covids, cells)
-    check_pill_covid_collision(game_set, covids, pill, score)
+            pill_collided(score, covids, cells, sound)
+    check_pill_covid_collision(game_set, covids, pill, score, sound)
 
 
-def check_pill_covid_collision(game_set, covids, pill, score):
+def check_pill_covid_collision(game_set, covids, pill, score, sound):
     if pygame.sprite.spritecollide(pill, covids, True):
+        sound.play(sound.correct)
         score.score += game_set.covid_kill_points
         if score.score % 500 == 0 and score.score != 0:
-            increase_level(game_set, score)
+            increase_level(game_set, score, sound)
         score.prep_score()
         check_high_score(score)
 
 
-def increase_level(game_set, score):
+def increase_level(game_set, score, sound):
+    sleep(1)
+    sound.play(sound.level_up)
     game_set.fps += 5
     score.level += 1
     score.prep_level()
@@ -164,7 +171,7 @@ def check_high_score(score):
         score.prep_high_score()
 
 
-def pill_collided(score, covids, cells):
+def pill_collided(score, covids, cells, sound):
     if score.lifes_left > 1:
         score.lifes_left -= 1
         score.prep_lifes()
@@ -172,12 +179,15 @@ def pill_collided(score, covids, cells):
         score.prep_killed_cell()
         covids.empty()
         cells.empty()
-        sleep(3)
+        sleep(1)
+        sound.play(sound.mission_failed)
     else:
-        game_over(score)
+        game_over(score, sound)
 
 
-def game_over(score):
+def game_over(score, sound):
+    sleep(1)
+    sound.play(sound.game_over)
     score.game_active = False
     pygame.mouse.set_visible(True)
 

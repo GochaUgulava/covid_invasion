@@ -11,3 +11,5 @@ class Settings:
         self.lifes_limit = 3
         self.covid_kill_points = 50
         self.killed_cell_limit = 3
+        self.music_volume = 0.4
+        self.sound_volume = 0.4
