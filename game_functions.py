@@ -6,12 +6,12 @@ from time import sleep
 from cell import Cell, Covid
 
 
-def check_event(pill, menu, score,  cells, covids, sound):
+def check_event(pill, menu, score,  cells, covids, sound, game_set):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            check_key_down(event, pill, score, cells, covids, sound)
+            check_key_down(event, pill, score, cells, covids, sound, game_set)
         elif event.type == pygame.KEYUP:
             check_key_up(event, pill)
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -19,7 +19,7 @@ def check_event(pill, menu, score,  cells, covids, sound):
             check_button(menu, score, cells, covids, mouse_x, mouse_y, sound)
 
 
-def check_key_down(event, pill, score, cells, covids, sound):
+def check_key_down(event, pill, score, cells, covids, sound, game_set):
     if event.key == pygame.K_RIGHT:
         pill.moving_right_flag = True
     elif event.key == pygame.K_LEFT:
@@ -29,9 +29,14 @@ def check_key_down(event, pill, score, cells, covids, sound):
     elif event.key == pygame.K_DOWN:
         pill.moving_down_flag = True
     elif event.key == pygame.K_ESCAPE:
-        sys.exit()
+        if not score.game_active:
+            sys.exit()
+        else:
+            game_over(score, sound, game_set)
     elif not score.game_active and event.key == pygame.K_RETURN:
         new_game(score, cells, covids, sound)
+    elif score.game_active and event.key == pygame.K_SPACE:
+        pause()
 
 
 def check_key_up(event, pill):
@@ -52,6 +57,19 @@ def check_button(menu, score, cells, covids, mouse_x, mouse_y, sound):
         show_instructions()
     elif menu.button_quit.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         sys.exit()
+
+
+def pause():
+    pause_flag = True
+    pygame.mixer.pause()
+    pygame.mixer.music.stop()
+    while pause_flag:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                pause_flag = False
+                pygame.mixer.unpause()
+                pygame.mixer.music.play(loops=-1)
+                break
 
 
 def get_path(file_name):
@@ -119,23 +137,22 @@ def covid_create(game_set, screen, covids, cells):
         covids.add(covid)
 
 
-def cell_update(screen, cells,  covids, pill, score, sound):
+def cell_update(screen, cells,  covids, pill, score, sound, game_set):
     cells.update()
     for cell in cells.sprites():
         if cell.rect.top > screen.get_rect().bottom:
             cells.remove(cell)
-    check_pill_cell_collision(cells, covids, pill, score, sound)
+    check_pill_cell_collision(cells, covids, pill, score, sound, game_set)
 
 
-def check_pill_cell_collision(cells, covids, pill, score, sound):
+def check_pill_cell_collision(cells, covids, pill, score, sound, game_set):
     if pygame.sprite.spritecollide(pill, cells, True):
         sound.play(sound.wrong)
         if score.killed_cell_limit > 1:
             score.killed_cell_limit -= 1
             score.prep_killed_cell()
         else:
-            pill_collided(score, covids, cells, sound)
-
+            pill_collided(score, covids, cells, sound, game_set)
 
 
 def covid_update(game_set, screen, covids, cells, pill, score, sound):
@@ -143,7 +160,7 @@ def covid_update(game_set, screen, covids, cells, pill, score, sound):
     for covid in covids.sprites():
         if covid.rect.top > screen.get_rect().bottom:
             covid.remove(covids)
-            pill_collided(score, covids, cells, sound)
+            pill_collided(score, covids, cells, sound, game_set)
     check_pill_covid_collision(game_set, covids, pill, score, sound)
 
 
@@ -171,7 +188,7 @@ def check_high_score(score):
         score.prep_high_score()
 
 
-def pill_collided(score, covids, cells, sound):
+def pill_collided(score, covids, cells, sound, game_set):
     if score.lifes_left > 1:
         score.lifes_left -= 1
         score.prep_lifes()
@@ -182,14 +199,21 @@ def pill_collided(score, covids, cells, sound):
         sleep(1)
         sound.play(sound.mission_failed)
     else:
-        game_over(score, sound)
+        game_over(score, sound, game_set)
 
 
-def game_over(score, sound):
+def game_over(score, sound, game_set):
     sleep(1)
     sound.play(sound.game_over)
     score.game_active = False
     pygame.mouse.set_visible(True)
+    save_high_score(game_set, score)
+
+
+def save_high_score(game_set, score):
+    if game_set.high_score < score.high_score:
+        with open(get_path("high_score.txt"), 'w') as file:
+            file.write(str(score.high_score))
 
 
 def render(game_set, screen, pill, covids, cells, score, menu):

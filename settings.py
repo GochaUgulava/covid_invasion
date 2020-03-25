@@ -1,3 +1,6 @@
+import game_functions as gf
+
+
 class Settings:
     def __init__(self):
         self.screen_width = 600
@@ -13,3 +16,14 @@ class Settings:
         self.killed_cell_limit = 3
         self.music_volume = 0.4
         self.sound_volume = 0.4
+        self.high_score = int(self.get_high_score())
+
+    def get_high_score(self):
+        try:
+            with open(gf.get_path("high_score.txt"), 'r') as file:
+                try:
+                    return file.read().rstrip()
+                except ValueError:
+                    return 0
+        except FileNotFoundError:
+            return 0

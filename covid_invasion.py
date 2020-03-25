@@ -1,4 +1,5 @@
-# Voice by Kenney (www.kenney.nl)
+# Copyright by Gocha Ugulava.  Under GPL (General Public License)
+# Voice by Kenney (www.kenney.nl). All audio and video from free sources.
 import pygame
 from pygame.sprite import Group
 
@@ -28,11 +29,11 @@ def main():
     menu = Menu(screen)
     while True:
         clock.tick(game_set.fps)
-        gf.check_event(pill, menu, score,  cells, covids, sound)
+        gf.check_event(pill, menu, score,  cells, covids, sound, game_set)
         if score.game_active:
             gf.cell_create(game_set, screen, covids, cells)
             gf.covid_create(game_set, screen, covids, cells)
-            gf.cell_update(screen, cells,  covids, pill, score, sound)
+            gf.cell_update(screen, cells,  covids, pill, score, sound, game_set)
             gf.covid_update(game_set, screen, covids, cells, pill, score, sound)
             pill.update()
         gf.render(game_set, screen, pill, covids, cells, score, menu)
