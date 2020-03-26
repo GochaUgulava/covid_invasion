@@ -29,7 +29,7 @@ def main():
     menu = Menu(screen)
     while True:
         clock.tick(game_set.fps)
-        gf.check_event(pill, menu, score,  cells, covids, sound, game_set)
+        gf.check_event(screen, pill, menu, score,  cells, covids, sound, game_set)
         if score.game_active:
             gf.cell_create(game_set, screen, covids, cells)
             gf.covid_create(game_set, screen, covids, cells)
