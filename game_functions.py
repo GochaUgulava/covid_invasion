@@ -4,6 +4,7 @@ import os
 from time import sleep
 
 from cell import Cell, Covid
+import set_settings
 
 
 def check_event(screen, pill, menu, score,  cells, covids, sound, game_set):
@@ -14,9 +15,9 @@ def check_event(screen, pill, menu, score,  cells, covids, sound, game_set):
             check_key_down(screen, event, pill, score, cells, covids, sound, game_set)
         elif event.type == pygame.KEYUP:
             check_key_up(event, pill)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_button(screen, menu, score, cells, covids, mouse_x, mouse_y, sound)
+            check_button(screen, game_set, menu, score, cells, covids, mouse_x, mouse_y, sound)
 
 
 def check_key_down(screen, event, pill, score, cells, covids, sound, game_set):
@@ -50,11 +51,13 @@ def check_key_up(event, pill):
         pill.moving_down_flag = False
 
 
-def check_button(screen, menu, score, cells, covids, mouse_x, mouse_y, sound):
+def check_button(screen, game_set, menu, score, cells, covids, mouse_x, mouse_y, sound):
     if menu.button_play.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         new_game(score, cells, covids, sound)
     elif menu.button_instructions.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         show_instructions(screen)
+    elif menu.button_settings.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
+        set_settings.set_settings(screen, game_set, sound)
     elif menu.button_quit.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         sys.exit()
 
@@ -116,7 +119,8 @@ def show_instructions(screen):
 
 def cell_create(game_set, screen, covids, cells):
     """ cell creation in game, avoiding their collision on creation;
-         cells are creating  by one in game_set.cell_number_adjust defined corridor.
+         cells are creating  by one in game_set.cell_number_adjust defined corridor;
+         new one not creating until old left the corridor.
     """
     cell_create_flag = True
     cell = Cell(game_set, screen)

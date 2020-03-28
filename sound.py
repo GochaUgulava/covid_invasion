@@ -14,6 +14,9 @@ class Sound:
         self.mission_failed = pygame.mixer.Sound(gf.get_path('mission_failed.wav'))
         self.game_over = pygame.mixer.Sound(gf.get_path('game_over.wav'))
         pygame.mixer.music.load(gf.get_path('maintheme.wav'))
+        self.music_volume(game_set)
+
+    def music_volume(self, game_set):
         pygame.mixer.music.set_volume(game_set.music_volume)
 
     def play(self, voice):

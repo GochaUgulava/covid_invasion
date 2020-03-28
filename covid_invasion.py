@@ -1,5 +1,6 @@
 # Copyright by Gocha Ugulava.  Under GPL (General Public License)
-# Voice by Kenney (www.kenney.nl). All audio and video from free sources.
+# Sounds by Kenney (www.kenney.nl)
+#  All audio and video from free sources.
 import pygame
 from pygame.sprite import Group
 

@@ -2,18 +2,18 @@ import pygame.font
 
 
 class Button:
-    def __init__(self, screen, msg, order_number):
+    def __init__(self, screen, msg, y):
         self.screen = screen
         self.msg = msg
-        self.order_number = order_number
+        self.y = y
         self.font = pygame.font.SysFont(None, 48)
         self.text_color = (255, 255, 255)
         self.button_color = (0, 0, 255)
-        self.width, self.height = 250, 70
+        self.width, self.height = 250, 60
         self.prep_button()
 
     def prep_button(self):
-        button_y = 150 + self.order_number * 100
+        button_y = self.y
         self.rect = pygame.Rect(0, 0, self.width, self.height)
         self.rect.centerx = self.screen.get_rect().centerx
         self.rect.centery = button_y
@@ -22,7 +22,6 @@ class Button:
         self.button_rect = self.button_image.get_rect()
         self.button_rect.centerx = self.screen.get_rect().centerx
         self.button_rect.centery = button_y
-
 
     def show_button(self):
         self.screen.fill(self.button_color, self.rect)

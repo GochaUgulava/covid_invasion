@@ -18,12 +18,14 @@ class Menu:
 
 
     def prep_menu(self):
-        self.button_play = Button(self.screen, "Play", 1)
-        self.button_instructions = Button(self.screen, "Instructions", 2)
-        self.button_quit = Button(self.screen, "Quit", 3)
+        self.button_play = Button(self.screen, "Play", 250)
+        self.button_instructions = Button(self.screen, "Instructions", 320)
+        self.button_settings = Button(self.screen, "Settings", 390)
+        self.button_quit = Button(self.screen, "Quit", 460)
 
     def show_menu(self):
         self.screen.blit(self.menu_image, self.menu_rect)
         self.button_play.show_button()
         self.button_instructions.show_button()
+        self.button_settings.show_button()
         self.button_quit.show_button()
