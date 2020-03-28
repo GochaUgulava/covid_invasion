@@ -20,9 +20,12 @@ class CellAll(Sprite):
         self.rot = 0
         self.rot_speed = random.choice([-5, -3, 3, 5])
         self.last_update = pygame.time.get_ticks()
+        self.explosion_anim = []
+        self.load_explosion_anim_images()
 
     def get_image_name(self):
-        self.image_name = "not_means"
+        self.image_name = "NotImplementedError"
+        raise NotImplementedError
 
     def update(self):
         self.rect.centery += self.game_set.cell_speed_factor
@@ -42,11 +45,33 @@ class CellAll(Sprite):
             self.rect = self.image.get_rect()
             self.rect.center = old_center
 
+    def load_explosion_anim_images(self):
+        raise NotImplementedError
+
+
 class Cell(CellAll):
     def get_image_name(self):
         self.image_name = random.choice(["red.bmp", "white.bmp", "mono.bmp"])
+
+    def load_explosion_anim_images(self):
+        if self.image_name == "red.bmp":
+            file_prefix = "red"
+        elif self.image_name == "white.bmp":
+            file_prefix = "white"
+        else:
+            file_prefix = "mono"
+        for i in range(1, 7):
+            filename = file_prefix + '{}.bmp'.format(i)
+            img = pygame.image.load(gf.get_path(filename))
+            self.explosion_anim.append(img)
 
 
 class Covid(CellAll):
     def get_image_name(self):
         self.image_name = "covid.bmp"
+
+    def load_explosion_anim_images(self):
+        for i in range(1, 7):
+            filename = 'covid{}.bmp'.format(i)
+            img = pygame.image.load(gf.get_path(filename))
+            self.explosion_anim.append(img)

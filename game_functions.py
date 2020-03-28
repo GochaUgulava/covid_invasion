@@ -4,6 +4,7 @@ import os
 from time import sleep
 
 from cell import Cell, Covid
+from explosion import Explosion
 import set_settings
 
 
@@ -118,7 +119,7 @@ def show_instructions(screen):
 
 
 def cell_create(game_set, screen, covids, cells):
-    """ cell creation in game, avoiding their collision on creation;
+    """ Cell creation in game, avoiding their collision on creation;
          cells are creating  by one in game_set.cell_number_adjust defined corridor;
          new one not creating until old left the corridor.
     """
@@ -150,17 +151,21 @@ def covid_create(game_set, screen, covids, cells):
         covids.add(covid)
 
 
-def cell_update(screen, cells,  covids, pill, score, sound, game_set):
+def cell_update(screen, cells,  covids, expls, pill, score, sound, game_set):
     cells.update()
     for cell in cells.sprites():
         if cell.rect.top > screen.get_rect().bottom:
             cells.remove(cell)
-    check_pill_cell_collision(screen, cells, covids, pill, score, sound, game_set)
+    check_pill_cell_collision(screen, cells, covids, expls, pill, score, sound, game_set)
 
 
-def check_pill_cell_collision(screen, cells, covids, pill, score, sound, game_set):
-    if pygame.sprite.spritecollide(pill, cells, True):
+def check_pill_cell_collision(screen, cells, covids, expls, pill, score, sound, game_set):
+    hits = pygame.sprite.spritecollide(pill, cells, True)
+    if hits:
         sound.play(sound.wrong)
+        for hit in hits:
+            expl = Explosion(hit.explosion_anim, hit.rect.center, screen)
+            expls.add(expl)
         if score.killed_cell_limit > 1:
             score.killed_cell_limit -= 1
             score.prep_killed_cell()
@@ -168,19 +173,23 @@ def check_pill_cell_collision(screen, cells, covids, pill, score, sound, game_se
             pill_collided(screen, score, covids, cells, sound, game_set)
 
 
-def covid_update(game_set, screen, covids, cells, pill, score, sound):
+def covid_update(game_set, screen, covids, expls, cells, pill, score, sound):
     covids.update()
     for covid in covids.sprites():
         if covid.rect.top > screen.get_rect().bottom:
             covid.remove(covids)
             pill_collided(screen, score, covids, cells, sound, game_set)
-    check_pill_covid_collision(game_set, covids, pill, score, sound)
+    check_pill_covid_collision(game_set, covids, expls, pill, score, sound, screen)
 
 
-def check_pill_covid_collision(game_set, covids, pill, score, sound):
-    if pygame.sprite.spritecollide(pill, covids, True):
+def check_pill_covid_collision(game_set, covids, expls, pill, score, sound, screen):
+    hits = pygame.sprite.spritecollide(pill, covids, True)
+    if hits:
         sound.play(sound.correct)
         score.score += game_set.covid_kill_points
+        for hit in hits:
+            expl = Explosion(hit.explosion_anim, hit.rect.center, screen)
+            expls.add(expl)
         if score.score % 500 == 0 and score.score != 0:
             increase_level(game_set, score, sound)
         score.prep_score()
@@ -188,7 +197,7 @@ def check_pill_covid_collision(game_set, covids, pill, score, sound):
 
 
 def increase_level(game_set, score, sound):
-    sleep(1)
+    sleep(0.5)
     sound.play(sound.level_up)
     game_set.fps += 5
     score.level += 1
@@ -209,7 +218,7 @@ def pill_collided(screen, score, covids, cells, sound, game_set):
         score.prep_killed_cell()
         covids.empty()
         cells.empty()
-        sleep(1)
+        sleep(0.5)
         sound.play(sound.mission_failed)
     else:
         game_over(screen, score, sound, game_set)
@@ -222,9 +231,9 @@ def game_over(screen, score, sound, game_set):
     msg_rect.center = screen.get_rect().center
     screen.blit(msg_image, msg_rect)
     pygame.display.flip()
-    sleep(1)
+    sleep(0.5)
     sound.play(sound.game_over)
-    sleep(5)
+    sleep(3)
     score.game_active = False
     pygame.mouse.set_visible(True)
     save_high_score(game_set, score)
@@ -236,11 +245,12 @@ def save_high_score(game_set, score):
             file.write(str(score.high_score))
 
 
-def render(game_set, screen, pill, covids, cells, score, menu):
+def render(game_set, screen, pill, covids, cells, expls, score, menu):
     screen.fill(game_set.screen_background_color)
     pill.blitme()
     cells.draw(screen)
     covids.draw(screen)
+    expls.draw(screen)
     score.show_stat()
     if not score.game_active:
         menu.show_menu()
