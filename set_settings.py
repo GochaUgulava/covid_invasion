@@ -78,5 +78,6 @@ def set_value(game_set, sound, slider_which, slider_name):
         game_set.sound_volume = round(slider_which.get_setting_value(), 1)
     if slider_name == "fps":
         game_set.fps = int(slider_which.get_setting_value())
+        game_set.fps_start = game_set.fps
     if slider_name == "covid":
         game_set.covid_number_adjust = 300 - int(slider_which.get_setting_value())

@@ -54,7 +54,7 @@ def check_key_up(event, pill):
 
 def check_button(screen, game_set, menu, score, cells, covids, mouse_x, mouse_y, sound):
     if menu.button_play.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
-        new_game(score, cells, covids, sound)
+        new_game(score, cells, covids, sound, game_set)
     elif menu.button_instructions.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
         show_instructions(screen)
     elif menu.button_settings.rect.collidepoint(mouse_x, mouse_y) and not score.game_active:
@@ -90,9 +90,10 @@ def set_icon():
     pygame.display.set_icon(icon_image)
 
 
-def new_game(score, cells, covids, sound):
+def new_game(score, cells, covids, sound, game_set):
     score.game_active = True
     pygame.mouse.set_visible(False)
+    game_set.fps = game_set.fps_start
     score.reset_stat()
     score.reset_killed_cell_limit()
     score.prep_score()
@@ -197,7 +198,7 @@ def check_pill_covid_collision(game_set, covids, expls, pill, score, sound, scre
 
 
 def increase_level(game_set, score, sound):
-    sleep(0.5)
+    sleep(0.2)
     sound.play(sound.level_up)
     game_set.fps += 5
     score.level += 1

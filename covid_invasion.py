@@ -1,4 +1,4 @@
-# Author Gocha Ugulava.  Under GPL (General Public License)
+# Author Gocha Ugulava.  Under GPL v3
 # Sounds by Kenney (www.kenney.nl)
 #  All audio and video from free sources.
 import pygame

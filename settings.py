@@ -6,6 +6,7 @@ class Settings:
         self.screen_width = 600
         self.screen_height = 600
         self.fps = 30
+        self.fps_start = 30
         self.screen_background_color = (255, 0, 100)
         self.pill_speed_factor = 4
         self.cell_speed_factor = 2
