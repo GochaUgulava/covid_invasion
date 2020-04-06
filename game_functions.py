@@ -36,7 +36,7 @@ def check_key_down(screen, event, pill, score, cells, covids, sound, game_set):
         else:
             game_over(screen, score, sound, game_set)
     elif not score.game_active and event.key == pygame.K_RETURN:
-        new_game(score, cells, covids, sound)
+        new_game(score, cells, covids, sound, game_set)
     elif score.game_active and event.key == pygame.K_SPACE:
         pause()
 
